@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left_part">
+            <h2 id="month_name"></h2>
+        </div>
+        <div class="right_part">
+            <h2><span id="year"></span></h2>
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <script>
+        function askPrompts() {
+            let month = askMonth();
+            let startDay = askDay();
+            let year = askYear();
+
+            setBackground(month);
+            showCalendar(month, startDay, year);
+        }
+
+        function askMonth() {
+                let month = prompt("Enter month (1-12):");
+                while (!month || isNaN(month) || month < 1 || month > 12) {
+                    alert("Invalid input. Please enter a valid month (1-12).");
+                    month = prompt("Enter month (1-12):");
+                }
+                return parseInt(month);
+            }
+
+        function askDay() {
+                let day = prompt("Enter starting day of the week (1-7):");
+                while (!day || isNaN(day) || day < 1 || day > 7) {
+                    alert("Invalid input. Please enter a valid day (1-7).");
+                    day = prompt("Enter starting day of the week (1-7):");
+                }
+                return parseInt(day);
+            }
+
+        function askYear() {
+                let year = prompt("Enter year:");
+                while (!year || isNaN(year)) {
+                    alert("Invalid input. Please enter a valid year.");
+                    year = prompt("Enter year:");
+                }
+                return parseInt(year);
+            }
+
+        function setBackground(month) {
+            const monthNames = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+            document.body.className = monthNames[month - 1];
+        }
+
+        function showCalendar(month, startDay, year) {
+            const daysInMonth = getDaysInMonth(month, year);
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; // text month sa display
+            document.getElementById("month_name").textContent = monthNames[month - 1];
+            document.getElementById("year").textContent = year;
+
+            let table = "<table><tr>";
+            const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; // text start days sa display
+            table += days.map(day => `<th>${day}</th>`).join("");
+            table += "</tr><tr>";
+
+            table += "<td></td>".repeat(startDay - 1);
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                table += `<td>${day}</td>`;
+                if ((day + startDay - 1) % 7 === 0) table += "</tr><tr>";
+            }
+
+            table += "</tr></table>";
+            document.getElementById("calendar").innerHTML = table;
+        }
+
+        function getDaysInMonth(month, year) {
+            const days = [31, (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            return days[month - 1];
+        }
+
+        askPrompts();
+    </script>
+</body>
+</html>

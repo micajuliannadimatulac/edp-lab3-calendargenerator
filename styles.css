@@ -1,0 +1,101 @@
+/* FONT IMPORTS */
+@font-face {
+    font-family: 'SignatureFont';
+    src: url('font_signature.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BarlowFont';
+    src: url('font_barlow.ttf') format('truetype');
+}
+
+/* DYNAMIC BGS */
+    .january { background-image: url('bg_january.png'); }
+    .february { background-image: url('bg_february.png'); }
+    .march { background-image: url('bg_march.png'); }
+    .april { background-image: url('bg_april.png'); }
+    .may { background-image: url('bg_may.png'); }
+    .june { background-image: url('bg_june.png'); }
+    .july { background-image: url('bg_july.png'); }
+    .august { background-image: url('bg_august.png'); }
+    .september { background-image: url('bg_september.png'); }
+    .october { background-image: url('bg_october.png'); }
+    .november { background-image: url('bg_november.png'); }
+    .december { background-image: url('bg_december.png'); }
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LEFT & RIGHT */
+.left_part, .right_part {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* TEXTS */
+h2 {
+    font-family: 'SignatureFont', Arial, sans-serif;
+    font-size: clamp(50px, 8vw, 85px);
+    text-transform: capitalize;
+    color: #ffe500;
+}
+
+h2 span {
+    font-family: 'BarlowFont', Arial, sans-serif;
+    font-size: clamp(40px, 5vw, 50px);
+    text-transform: uppercase;
+    color: #fff48e;
+    display: block;
+}
+
+th, td {
+    font-family: 'BarlowFont', Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(25px, 2vw, 30px);
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    color: #ffe500;
+}
+
+td {
+    color: #fff48e;
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
